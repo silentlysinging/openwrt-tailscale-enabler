@@ -25,16 +25,16 @@ if [ ! -f /mnt/sda1/tailscale ]; then
 
     echo "Downloading Tailscale ${version} .."
 
-    echo -e "tailscale_${version}/tailscale" > /mnt/sda1/tailscale_${version}_files.txt
+    echo -e "tailscale_${version}/tailscale" > /tmp/tailscale_${version}_files.txt
 
     if [ ! -f /mnt/sda1/tailscaled ]; then
-        echo -e "tailscale_${version}/tailscaled" >> /mnt/sda1/tailscale_${version}_files.txt
+        echo -e "tailscale_${version}/tailscaled" >> /tmp/tailscale_${version}_files.txt
     fi
 
-    wget -O- https://pkgs.tailscale.com/stable/tailscale_${version}.tgz | tar x -zvf - -C /mnt/sda1 -T /mnt/sda1/tailscale_${version}_files.txt
+    wget -O- https://pkgs.tailscale.com/stable/tailscale_${version}.tgz | tar x -zvf - -C /tmp -T /tmp/tailscale_${version}_files.txt
 
-    mv /mnt/sda1/tailscale_$version/* /mnt/sda1
-    rm -rf /mnt/sda1/tailscale_${version}*
+    mv /tmp/tailscale_$version/* /mnt/sda1
+    rm -rf /tmp/tailscale_${version}*
 
     echo "Done!"
 fi
