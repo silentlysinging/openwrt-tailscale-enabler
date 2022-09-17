@@ -30,6 +30,7 @@ if [ ! -f /mnt/sda1/tailscaled ]; then
     wget -O- https://pkgs.tailscale.com/stable/tailscale_${version}.tgz | tar x -zvf - -C /tmp -T /tmp/tailscale_${version}_files.txt
 
     mv /tmp/tailscale_$version/* /mnt/sda1
+    mkdir -p /mnt/sda1/tailscale_config/tailscale
     rm -rf /tmp/tailscale_${version}*
 
     echo "Done!"
